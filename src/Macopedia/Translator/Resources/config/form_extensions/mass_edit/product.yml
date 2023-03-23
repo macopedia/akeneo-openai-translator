@@ -1,0 +1,14 @@
+extensions:
+  macopedia-mass-product-edit-translate-attributes:
+    module: macopedia-translator/mass-edit/translate
+    parent: pim-mass-product-edit
+    position: 500
+    aclResourceId: pim_enrich_mass_translation
+    config:
+      title: pim_enrich.mass_edit.product.title
+      label: macopedia.mass_edit.attribute_translator.label
+      labelCount: macopedia.mass_edit.attribute_translator.label_count
+      description: macopedia.mass_edit.attribute_translator.description
+      code: update_product_translations
+      jobInstanceCode: update_product_translations
+      icon: icon-compare

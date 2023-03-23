@@ -1,0 +1,4 @@
+config:
+  paths:
+    macopedia-translator/mass-edit/translate: macopediatranslator/js/mass-edit/translate
+    macopedia-translator/template/mass-edit/translate: macopediatranslator/templates/mass-edit/translate.html

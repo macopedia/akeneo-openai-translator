@@ -1,0 +1,53 @@
+{
+    "name": "macopedia/akeneo-openai-translator",
+    "type": "symfony-bundle",
+    "description": "OpenAI attributes translator for Akeneo",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Piotr Musiał",
+            "email": "piotrmus@gmail.com",
+            "homepage": "https://www.macopedia.com"
+        },
+        {
+            "name": "Daniel Rejman",
+            "email": "rejman96@gmail.com",
+            "homepage": "https://www.macopedia.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "require": {
+        "orhanerday/open-ai": "^4.7"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.15",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.0"
+    },
+    "scripts": {
+        "phpstan": [
+            "vendor/bin/phpstan --configuration=phpstan.neon"
+        ],
+        "phpunit": [
+            "vendor/bin/phpunit --colors=always"
+        ],
+        "test": [
+            "vendor/bin/php-cs-fixer fix --dry-run",
+            "@phpstan",
+            "@phpunit"
+        ],
+        "cs:fix": [
+            "vendor/bin/php-cs-fixer fix"
+        ]
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
+    }
+}
