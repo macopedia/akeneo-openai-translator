@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Macopedia\Translator\Client\OpenAiClient;
 
 class Choice
@@ -8,7 +10,8 @@ class Choice
         private Message $message,
         private string $finishReason,
         private int $index
-    ) {}
+    ) {
+    }
 
     public function getMessage(): Message
     {

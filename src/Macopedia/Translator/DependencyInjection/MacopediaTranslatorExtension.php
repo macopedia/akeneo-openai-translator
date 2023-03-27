@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Macopedia\Translator\DependencyInjection;
 
 use Exception;
@@ -20,6 +22,7 @@ final class MacopediaTranslatorExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('connector.yml');
         $loader->load('services.yml');
     }
 }

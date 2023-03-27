@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Macopedia\Translator\Translator;
 
@@ -195,8 +196,9 @@ final class Language
     ];
 
     private function __construct(
-        private string $code)
-    { }
+        private string $code
+    ) {
+    }
 
     /**
      * @param string $code

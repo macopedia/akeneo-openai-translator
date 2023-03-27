@@ -52,7 +52,7 @@ define([
                             "sourceLocale": locales[0].code,
                             "targetChannel": channels[0].code,
                             "targetLocale": locales[0].code,
-                            "translatedAttributes": [],
+                            "attributesToTranslate": [],
                         };
                         this.setData(data);
                     }
@@ -63,7 +63,7 @@ define([
                         locales: locales,
                         channels: channels,
                         attributes: attributes,
-                        translatedAttributes: model.actions[0].translatedAttributes,
+                        attributesToTranslate: model.actions[0].attributesToTranslate,
                         sourceChannel: model.actions[0].sourceChannel,
                         sourceLocale: model.actions[0].sourceLocale,
                         targetChannel: model.actions[0].targetChannel,
@@ -88,7 +88,7 @@ define([
 
             setAttributes: function (event) {
                 let data = this.getFormData();
-                data.actions[0].translatedAttributes = $(event.target).val();
+                data.actions[0].attributesToTranslate = $(event.target).val();
                 this.setData(data);
             },
 

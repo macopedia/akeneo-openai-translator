@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Macopedia\Translator\Client;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Macopedia\Translator\Client\OpenAiClient\Response;
 use Macopedia\Translator\Exception\InvalidOpenAiResponseException;
 use Orhanerday\OpenAi\OpenAi;
@@ -38,7 +41,7 @@ class OpenAiClient
         $response = $this->client->chat($message);
 
         if ($response === false) {
-            throw new InvalidOpenAiResponseException();
+            throw new InvalidOpenAiResponseException($message);
         }
 
         $response = Response::fromArray(json_decode($response, true));
@@ -50,6 +53,8 @@ class OpenAiClient
         return $response;
     }
 
+
+    #[ArrayShape(['model' => "string", 'messages' => "\string[][]"])]
     private function generateMessage(string $role, string $content): array
     {
         return [

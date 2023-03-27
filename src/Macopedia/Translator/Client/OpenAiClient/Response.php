@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Macopedia\Translator\Client\OpenAiClient;
 
 use Macopedia\Translator\Client\OpenAiClient\Choices;
 use Webmozart\Assert\Assert;
+use DateTime;
 
 class Response
 {
     public function __construct(
         private string $id,
         private string $object,
-        private \DateTime $created,
+        private DateTime $created,
         private string $model,
         private Choices $choices,
         array $usage
     ) {
-
     }
 
     public static function fromArray(array $data)
@@ -30,7 +32,7 @@ class Response
         return new self(
             $data['id'],
             $data['object'],
-            (new \DateTime())->setTimestamp($data['created']),
+            (new DateTime())->setTimestamp($data['created']),
             $data['model'],
             new Choices($data['choices']),
             $data['usage']

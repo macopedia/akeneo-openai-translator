@@ -21,7 +21,8 @@
         }
     },
     "require": {
-        "orhanerday/open-ai": "^4.7"
+        "orhanerday/open-ai": "^4.7",
+        "akeneo/pim-community-dev": "^6.0.0||^7.0.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.15",
@@ -30,19 +31,20 @@
     },
     "scripts": {
         "phpstan": [
-            "vendor/bin/phpstan --configuration=phpstan.neon"
+            "vendor/bin/phpstan analyse --configuration=\"config/phpstan.neon\""
         ],
         "phpunit": [
-            "vendor/bin/phpunit --colors=always"
-        ],
-        "test": [
-            "vendor/bin/php-cs-fixer fix --dry-run",
-            "@phpstan",
-            "@phpunit"
+            "vendor/bin/phpunit --colors=always --configuration=\"config/phpunit.xml.dist\""
         ],
         "cs:fix": [
-            "vendor/bin/php-cs-fixer fix"
+            "vendor/bin/php-cs-fixer fix --config=\"config/.php-cs-fixer.php\" --using-cache no --allow-risky=yes"
+        ],
+        "test": [
+            "@cs:fix",
+            "@phpstan",
+            "@phpunit"
         ]
+
     },
     "minimum-stability": "stable",
     "config": {

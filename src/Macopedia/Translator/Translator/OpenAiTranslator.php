@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Macopedia\Translator\Translator;
 
 use Macopedia\Translator\Client\OpenAiClient;
@@ -12,8 +14,7 @@ class OpenAiTranslator implements TranslatorInterface
 
     public function __construct(
         private OpenAiClient $openAiClient
-    )
-    {
+    ) {
     }
 
     public function translate(string $text, Language $targetLanguageCode): string

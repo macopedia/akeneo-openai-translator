@@ -1,11 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Macopedia\Translator\Exception;
 
-class InvalidOpenAiResponseException extends \Exception
+use Exception;
+
+class InvalidOpenAiResponseException extends Exception
 {
-    public function __construct()
+    public function __construct(array $request)
     {
-        parent::__construct('Response from OpenAi is empty');
+        parent::__construct(sprintf('Response from OpenAi is empty. Request: %s', json_encode($request)));
     }
 }
