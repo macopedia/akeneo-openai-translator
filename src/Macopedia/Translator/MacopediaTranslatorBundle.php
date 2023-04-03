@@ -8,4 +8,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class MacopediaTranslatorBundle extends Bundle
 {
+    public function getParent()
+    {
+        return null;
+    }
 }

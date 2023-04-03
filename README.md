@@ -12,6 +12,14 @@ Install composer dependency
 composer require macopedia/akeneo-openai-translator
 ```
 
+register bundle in `config/bundles.php`
+
+```php
+return [
+    'Macopedia\Translator\MacopediaTranslatorBundle' => ['all' => true]
+];
+```
+
 define Open AI Key in `.env` file:
 
 ```dotenv

@@ -1,9 +1,11 @@
+parameters:
+  open_ai_key: env(default::OPEN_AI_KEY)
 services:
   Macopedia\Translator\Client\OpenAiClient:
     arguments:
       - '@logger'
       - 'gpt-3.5-turbo'
-      - '%env(OPEN_AI_KEY)%'
+      - '%open_ai_key%'
 
   Macopedia\Translator\Translator\OpenAiTranslator:
     arguments:

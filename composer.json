@@ -43,6 +43,9 @@
             "@cs:fix",
             "@phpstan",
             "@phpunit"
+        ],
+        "post-install-cmd": [
+            "make upgrade-front"
         ]
 
     },

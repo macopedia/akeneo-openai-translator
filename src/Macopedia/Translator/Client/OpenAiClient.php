@@ -17,11 +17,10 @@ class OpenAiClient
     public function __construct(
         private LoggerInterface $logger,
         private string $model,
-        string $apiKey,
-        string $organization = null,
+        ?string $apiKey = '',
+        ?string $organization = null,
         private bool $logging = false
-    )
-    {
+    ) {
         $this->client = new OpenAi($apiKey);
         $this->client->listModels();
 
@@ -54,7 +53,7 @@ class OpenAiClient
     }
 
 
-    #[ArrayShape(['model' => "string", 'messages' => "\string[][]"])]
+    #[ArrayShape(['model' => 'string', 'messages' => "\string[][]"])]
     private function generateMessage(string $role, string $content): array
     {
         return [
