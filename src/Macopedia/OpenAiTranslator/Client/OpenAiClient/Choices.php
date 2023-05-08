@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Macopedia\Translator\Client\OpenAiClient;
+namespace Macopedia\OpenAiTranslator\Client\OpenAiClient;
 
 use Webmozart\Assert\Assert;
 

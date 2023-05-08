@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Macopedia\Translator\Exception;
+namespace Macopedia\OpenAiTranslator\Exception;
 
 use Exception;
 

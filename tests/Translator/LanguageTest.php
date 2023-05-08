@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Translator;
 
 use InvalidArgumentException;
-use Macopedia\Translator\Translator\Language;
+use Macopedia\OpenAiTranslator\Translator\Language;
 use PHPUnit\Framework\TestCase;
 
 final class LanguageTest extends TestCase
