@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Macopedia\Translator\Service;
+namespace Macopedia\OpenAiTranslator\Service;
 
 use Akeneo\Pim\Enrichment\Component\Product\EntityWithFamilyVariant\CheckAttributeEditable;
 use Akeneo\Pim\Enrichment\Component\Product\Model\ProductInterface;
 use Akeneo\Pim\Enrichment\Component\Product\Model\ProductModelInterface;
 use Akeneo\Pim\Enrichment\Component\Product\Value\ScalarValue;
+use Akeneo\Pim\Structure\Component\AttributeTypes;
 use Akeneo\Pim\Structure\Component\Repository\AttributeRepositoryInterface;
 use Akeneo\Tool\Component\StorageUtils\Updater\PropertySetterInterface;
-use Macopedia\Translator\Translator\Language;
-use Macopedia\Translator\Translator\TranslatorInterface;
+use Macopedia\OpenAiTranslator\Translator\Language;
+use Macopedia\OpenAiTranslator\Translator\TranslatorInterface;
 use Webmozart\Assert\Assert;
 
 class TranslateAttributesService
@@ -38,7 +39,7 @@ class TranslateAttributesService
                 continue;
             }
 
-            if (!($attribute instanceof ScalarValue)) {
+            if (!($attribute->getType() === AttributeTypes::TEXT || $attribute->getType() === AttributeTypes::TEXTAREA)) {
                 continue;
             }
 
@@ -56,6 +57,10 @@ class TranslateAttributesService
                 $attributeValue->getData(),
                 $targetLocale
             );
+
+            if ($translatedText === null) {
+                continue;
+            }
 
             $this->propertySetter->setData($product, $attributeCode, $translatedText, [
                 'locale' => $targetLocaleAkeneo,
@@ -75,12 +80,12 @@ class TranslateAttributesService
         Assert::keyExists($action, 'attributesToTranslate');
 
         return [
-            'sourceScope' => $action['sourceChannel'],
-            'targetScope' => $action['targetChannel'],
-            'sourceLocaleAkeneo' => $action['sourceLocale'],
-            'targetLocaleAkeneo' => $action['targetLocale'],
-            'targetLocale' => Language::fromCode(explode('_', $action['targetLocale'])[0]),
-            'attributesToTranslate' => $action['attributesToTranslate']
+            $action['sourceChannel'],
+            $action['targetChannel'],
+            $action['sourceLocale'],
+            $action['targetLocale'],
+            Language::fromCode(explode('_', $action['targetLocale'])[0]),
+            $action['attributesToTranslate']
         ];
     }
 }

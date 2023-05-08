@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Macopedia\Translator;
+namespace Macopedia\OpenAiTranslator;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

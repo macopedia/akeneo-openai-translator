@@ -1,5 +1,5 @@
 parameters:
-  open_ai_key: env(default::OPEN_AI_KEY)
+  open_ai_key: '%env(default::OPEN_AI_KEY)%'
 services:
   Macopedia\Translator\Client\OpenAiClient:
     arguments:

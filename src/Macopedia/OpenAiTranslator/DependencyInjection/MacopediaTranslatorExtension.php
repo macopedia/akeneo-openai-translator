@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Macopedia\Translator\DependencyInjection;
+namespace Macopedia\OpenAiTranslator\DependencyInjection;
 
 use Exception;
 use Symfony\Component\Config\FileLocator;

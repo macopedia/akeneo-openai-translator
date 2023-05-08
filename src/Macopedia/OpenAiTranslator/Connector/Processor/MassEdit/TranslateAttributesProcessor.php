@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Macopedia\Translator\Connector\Processor\MassEdit;
+namespace Macopedia\OpenAiTranslator\Connector\Processor\MassEdit;
 
 use Akeneo\Pim\Enrichment\Component\Product\Connector\Processor\MassEdit\AbstractProcessor;
 use Akeneo\Pim\Enrichment\Component\Product\Model\ProductInterface;
 use Akeneo\Pim\Enrichment\Component\Product\Model\ProductModelInterface;
 use Exception;
 use InvalidArgumentException;
-use Macopedia\Translator\Service\TranslateAttributesService;
+use Macopedia\OpenAiTranslator\Service\TranslateAttributesService;
 
 final class TranslateAttributesProcessor extends AbstractProcessor
 {

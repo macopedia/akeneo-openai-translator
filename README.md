@@ -1,4 +1,4 @@
-Akeneo OpenAI Translator
+Akeneo OpenAi Translator
 =====================================
 
 
@@ -16,7 +16,7 @@ register bundle in `config/bundles.php`
 
 ```php
 return [
-    'Macopedia\Translator\MacopediaTranslatorBundle' => ['all' => true]
+    'Macopedia\OpenAiTranslator\MacopediaTranslatorBundle' => ['all' => true]
 ];
 ```
 
@@ -45,6 +45,6 @@ Extension uses [Open AI API](https://openai.com/product) - ChatGPT v3.5
 * Akeneo PIM >= 6.x
 
 ## Contact
-`Akeneo OpenAI translator` is brought to you by [Macopedia](https://macopedia.com/).
+`Akeneo OpenAi translator` is brought to you by [Macopedia](https://macopedia.com/).
 
 [Contact us](https://macopedia.com/contact)
