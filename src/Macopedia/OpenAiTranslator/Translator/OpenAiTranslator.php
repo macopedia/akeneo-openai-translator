@@ -17,8 +17,14 @@ class OpenAiTranslator implements TranslatorInterface
 
     public function translate(string $text, Language $targetLanguageCode): ?string
     {
-        return $this
+        $answer = $this
             ->openAiClient
             ->ask('user', sprintf(self::MESSAGE, $targetLanguageCode->asText(), $text));
+
+        if ($answer !== null) {
+            $answer = preg_replace('/(\(Note.*)/','',$answer);
+        }
+
+        return $answer;
     }
 }

@@ -9,12 +9,17 @@ use Macopedia\OpenAiTranslator\Client\OpenAiClient\Response;
 class ErrorResponse extends Response
 {
     public function __construct(
-        private string $error
+        private string|array $error
     ) {
     }
 
     public function getError(): string
     {
-        return $this->error;
+        $error = $this->error;
+
+        if (is_array($error)) {
+            $error = json_encode($error);
+        }
+        return $error;
     }
 }
