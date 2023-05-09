@@ -8,7 +8,7 @@ use Macopedia\OpenAiTranslator\Client\OpenAiClient;
 
 class OpenAiTranslator implements TranslatorInterface
 {
-    private const MESSAGE = 'Translate the text after a semicolon to %s;';
+    private const MESSAGE = 'Translate text betweeen <START> and <STOP> to %s. Keep HTMl unchanged. <START>%s<STOP>';
 
     public function __construct(
         private OpenAiClient $openAiClient
@@ -19,6 +19,6 @@ class OpenAiTranslator implements TranslatorInterface
     {
         return $this
             ->openAiClient
-            ->ask('user', sprintf(self::MESSAGE, $targetLanguageCode->asText()) . $text);
+            ->ask('user', sprintf(self::MESSAGE, $targetLanguageCode->asText(), $text));
     }
 }
