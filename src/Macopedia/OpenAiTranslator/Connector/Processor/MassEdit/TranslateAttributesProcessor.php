@@ -45,6 +45,8 @@ final class TranslateAttributesProcessor extends AbstractProcessor
      */
     private function translateAttributes(mixed $product, array $action): ProductInterface|ProductModelInterface
     {
-        return $this->translateAttributesService->translateAttributes($product, $action);
+        return $this->translateAttributesService
+            ->setStepExecution($this->stepExecution)
+            ->translateAttributes($product, $action);
     }
 }

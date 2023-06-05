@@ -30,7 +30,7 @@ services:
   macopedia.step.update_product_translations.mass_edit:
     class: '%pim_connector.step.item_step.class%'
     arguments:
-      - 'perform'
+      - 'translate'
       - '@event_dispatcher'
       - '@akeneo_batch.job_repository'
       - '@pim_enrich.reader.database.product_and_product_model'
