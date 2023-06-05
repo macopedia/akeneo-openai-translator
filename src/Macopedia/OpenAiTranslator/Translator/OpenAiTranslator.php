@@ -22,7 +22,7 @@ class OpenAiTranslator implements TranslatorInterface
             ->ask('user', sprintf(self::MESSAGE, $targetLanguageCode->asText(), $text));
 
         if ($answer !== null) {
-            $answer = preg_replace('/(\(Note.*)/','',$answer);
+            $answer = preg_replace('/(\(Note.*)/', '', $answer);
         }
 
         return $answer;
