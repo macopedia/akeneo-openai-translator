@@ -16,7 +16,7 @@ register bundle in `config/bundles.php`
 
 ```php
 return [
-    'Macopedia\OpenAiTranslator\MacopediaTranslatorBundle' => ['all' => true]
+    Macopedia\OpenAiTranslator\MacopediaTranslatorBundle::class => ['all' => true]
 ];
 ```
 
