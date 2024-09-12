@@ -6,13 +6,13 @@
     "authors": [
         {
             "name": "Piotr Musiał",
-            "email": "piotrmus@gmail.com",
-            "homepage": "https://www.macopedia.com"
+            "email": "extensions@macopedia.pl",
+            "homepage": "https://macopedia.com/products/akeneo"
         },
         {
             "name": "Daniel Rejman",
-            "email": "rejman96@gmail.com",
-            "homepage": "https://www.macopedia.com"
+            "email": "extensions@macopedia.pl",
+            "homepage": "https://macopedia.com/products/akeneo"
         }
     ],
     "autoload": {
