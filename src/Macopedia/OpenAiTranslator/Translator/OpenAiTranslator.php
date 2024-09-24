@@ -8,7 +8,7 @@ use Macopedia\OpenAiTranslator\Client\OpenAiClient;
 
 class OpenAiTranslator implements TranslatorInterface
 {
-    private const MESSAGE = 'Translate all values of given JSON betweeen <START> and <STOP> to %s. Keep HTML unchanged. Return valid JSON. <START>%s<STOP>';
+    private const MESSAGE = 'Translate all values in the given JSON between <<<START>>> and <<<STOP>>> to %s. Do not translate any part of the HTML markup, such as tag names, attributes, or classes. Translate only the text content inside the HTML tags. Ensure the output is valid JSON with same keys as input (translate values and do not change the keys). <<<START>>>%s<<<STOP>>>';
 
     public function __construct(
         private OpenAiClient $openAiClient

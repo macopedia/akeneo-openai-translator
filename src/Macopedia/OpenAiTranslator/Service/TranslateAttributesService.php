@@ -53,7 +53,7 @@ class TranslateAttributesService
 
         foreach ($attributes as $attribute) {
             if (!$this->checkAttributeEditable->isEditable($product, $attribute)) {
-                $this->stepExecution->addWarning('Attribute is not editable', [], new DataInvalidItem($attribute));
+                $this->stepExecution->addWarning("Attribute is not editable (it's perfectly normal for product models)", [], new DataInvalidItem($attribute));
                 $this->stepExecution->incrementSummaryInfo('skip');
                 $this->stepExecution->incrementProcessedItems();
                 continue;
@@ -94,6 +94,9 @@ class TranslateAttributesService
         }
 
         foreach (json_decode($translatedText) as $key => $translation) {
+            if (!in_array($key, $attributesToTranslate, true)) {
+                continue;
+            }
             $summary[$key] = [[$translations[$key] => $translation]];
             $this->propertySetter->setData($product, $key, $translation, [
                 'locale' => $targetLocaleAkeneo,
