@@ -3,7 +3,6 @@ parameters:
 services:
   Macopedia\OpenAiTranslator\Client\OpenAiClient:
     arguments:
-      - '@logger'
       - 'gpt-3.5-turbo'
       - '%open_ai_key%'
 
@@ -17,3 +16,4 @@ services:
       - '@Macopedia\OpenAiTranslator\Repository\AttributeRepository'
       - '@pim_catalog.entity_with_family_variant.check_attribute_editable'
       - '@pim_catalog.updater.property_setter'
+      - '@logger'
