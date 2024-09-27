@@ -6,6 +6,7 @@ namespace Macopedia\OpenAiTranslator\Client;
 
 use JetBrains\PhpStorm\ArrayShape;
 use Macopedia\OpenAiTranslator\Client\OpenAiClient\Response;
+use Macopedia\OpenAiTranslator\Exception\ErrorOpenAiResponseException;
 use Macopedia\OpenAiTranslator\Exception\InvalidOpenAiResponseException;
 use Orhanerday\OpenAi\OpenAi;
 use Psr\Log\LoggerInterface;
@@ -15,7 +16,6 @@ class OpenAiClient
     private OpenAi $client;
 
     public function __construct(
-        private LoggerInterface $logger,
         private string $model,
         ?string $apiKey = '',
         ?string $organization = null
@@ -33,16 +33,13 @@ class OpenAiClient
         $message = $this->generateMessage($role, $content);
 
         $response = $this->client->chat($message);
-
         if ($response === false) {
-            throw new InvalidOpenAiResponseException($message);
+            throw new InvalidOpenAiResponseException($message, $this->client->getCURLInfo());
         }
 
         $response = Response::fromArray(json_decode($response, true));
-
         if ($response instanceof Response\ErrorResponse) {
-            $this->logger->error('OpenAI connection Error: ' . $response->getError());
-            return null;
+            throw new ErrorOpenAiResponseException($message, $response);
         }
 
         return $response->getFirstChoiceMessage();

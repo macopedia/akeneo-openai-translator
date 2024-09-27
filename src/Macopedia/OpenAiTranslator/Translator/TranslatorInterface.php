@@ -6,5 +6,5 @@ namespace Macopedia\OpenAiTranslator\Translator;
 
 interface TranslatorInterface
 {
-    public function translate(string $text, Language $targetLanguageCode): ?string;
+    public function translate(string $text, Language $targetLanguageCode): ?array;
 }
