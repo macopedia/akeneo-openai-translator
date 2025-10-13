@@ -24,6 +24,7 @@ define Open AI Key in `.env` file:
 
 ```dotenv
 OPEN_AI_KEY=yourapikey
+OPEN_AI_MODEL=gpt-3.5-turbo
 ```
 
 add new job instance
