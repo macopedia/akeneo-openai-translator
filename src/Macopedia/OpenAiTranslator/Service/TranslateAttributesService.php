@@ -107,7 +107,7 @@ class TranslateAttributesService
 
         try {
             $aiResponse = $this->translator->translate(
-                json_encode($translations),
+                json_encode($translations, JSON_UNESCAPED_SLASHES),
                 $targetLocale
             );
         } catch (Throwable $exception) {
@@ -115,10 +115,6 @@ class TranslateAttributesService
             throw $exception;
         }
 
-        $aiResponse = $this->translator->translate(
-            json_encode($translations),
-            $targetLocale
-        );
         foreach ($aiResponse as $key => $translation) {
             $key = trim($key);
             if (!$key) {
