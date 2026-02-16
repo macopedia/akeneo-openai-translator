@@ -7,6 +7,8 @@ namespace Macopedia\OpenAiTranslator\Translator;
 use JsonException;
 use Macopedia\OpenAiTranslator\Client\OpenAiClient;
 use Macopedia\OpenAiTranslator\Exception\EmptyTranslationResponseException;
+use Macopedia\OpenAiTranslator\Exception\ErrorOpenAiResponseException;
+use Macopedia\OpenAiTranslator\Exception\InvalidOpenAiResponseException;
 use Macopedia\OpenAiTranslator\Exception\InvalidTranslationResponseException;
 
 use function json_decode;
@@ -20,13 +22,20 @@ class OpenAiTranslator implements TranslatorInterface
 {
     private const MARKET_START = '__AI_TRANSLATE_START__';
     private const MARKET_STOP = '__AI_TRANSLATE_STOP__';
-    private const MESSAGE = 'Translate all values in the given JSON between "' . self::MARKET_START . '" and "' . self::MARKET_STOP . ' " markers to "%s" locale. If HTML tags are present, do not translate any part of the HTML markup, such as tag names, attributes, or classes (translate only the text inside HTML tags). Translate only the values of the JSON data between markers and ensure that no changes are made to the JSON keys. Do not include the markers "' . self::MARKET_START . '" and "' . self::MARKET_STOP . '" in the final output. The output have to be a valid JSON identical to the input JSON structure, except for translated values. "' . self::MARKET_START . '"%s"' . self::MARKET_STOP . '"';
+    private const MESSAGE = 'Translate all values in the given JSON between "' . self::MARKET_START . '" and "' . self::MARKET_STOP . ' " markers to "%s" locale. If HTML tags are present, do not translate any part of the HTML markup, such as tag names, attributes, or classes (translate only the text inside HTML tags). Translate only the values of the JSON data between markers and ensure that no changes are made to the JSON keys. Do not include the markers "' . self::MARKET_START . '" and "' . self::MARKET_STOP . '" in the final output. Return ONLY valid JSON, identical to the input structure, except for translated values. Do NOT wrap the output in markdown, code fences, or add any explanations. "' . self::MARKET_START . '"%s"' . self::MARKET_STOP . '"';
 
     public function __construct(
         private OpenAiClient $openAiClient,
     ) {
     }
 
+    /**
+     * @return array<string, mixed>|null
+     * @throws EmptyTranslationResponseException
+     * @throws InvalidTranslationResponseException
+     * @throws ErrorOpenAiResponseException
+     * @throws InvalidOpenAiResponseException
+     */
     public function translate(string $text, Language $targetLanguageCode): ?array
     {
         $prompt = sprintf(self::MESSAGE, $targetLanguageCode->asText(), $text);
@@ -42,7 +51,7 @@ class OpenAiTranslator implements TranslatorInterface
         try {
             return json_decode($answer, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $exception) {
-            throw new InvalidTranslationResponseException($prompt, $exception);
+            throw new InvalidTranslationResponseException($prompt . ' answer: ' . $answer, $exception);
         }
     }
 }
