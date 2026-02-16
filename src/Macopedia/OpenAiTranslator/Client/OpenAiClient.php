@@ -46,16 +46,18 @@ class OpenAiClient
     }
 
 
-    #[ArrayShape(['model' => 'string', 'messages' => "\string[][]"])]
+    #[ArrayShape(['model' => 'string', 'messages' => "\string[][]", 'response_format' => "\string[]"])]
     private function generateMessage(string $role, string $content): array
     {
         return [
             'model' => $this->model,
-            'messages' => [[
-                'role' => $role,
-                'content' => $content
-            ]
-            ]
+            'messages' => [
+                [
+                    'role' => $role,
+                    'content' => $content
+                ]
+            ],
+            'response_format' => ['type' => 'json_object'],
         ];
     }
 }
